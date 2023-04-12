@@ -16,7 +16,7 @@ public class PersonDAO {
         this.em = em;
     }
 
-    public Person getById(Integer id) {
+    public Person getById(long id) {
         return em.find(Person.class, id);
     }
 

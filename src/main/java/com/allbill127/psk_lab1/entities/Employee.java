@@ -31,5 +31,5 @@ public class Employee {
     private Person person;
 
     @ManyToOne
-    private Company companies;
+    private Company company;
 }

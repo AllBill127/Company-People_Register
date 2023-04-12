@@ -17,7 +17,7 @@ public class EmployeeDAO {
         this.em = em;
     }
 
-    public Employee getById(Integer id) {
+    public Employee getById(long id) {
         return em.find(Employee.class, id);
     }
 

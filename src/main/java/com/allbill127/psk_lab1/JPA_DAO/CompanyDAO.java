@@ -16,7 +16,7 @@ public class CompanyDAO {
         this.em = em;
     }
 
-    public Company getById(Integer id) {
+    public Company getById(long id) {
         return em.find(Company.class, id);
     }
 
