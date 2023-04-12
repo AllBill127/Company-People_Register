@@ -1,4 +1,4 @@
-package com.allbill127.psk_lab1.persistence;
+package com.allbill127.psk_lab1.JPA_DAO;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
@@ -11,7 +11,7 @@ import javax.persistence.PersistenceUnit;
 import javax.persistence.SynchronizationType;
 
 @ApplicationScoped
-public class Resources {
+public class JTAEntityManagerProvider {
 
     @PersistenceUnit
     private EntityManagerFactory emf;
