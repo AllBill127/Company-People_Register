@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>teachers:</h2>
+    <ol>
+        <ui:repeat value="#{teachers.allTeachers}" var="teacher">
+            <li><h:link value="#{teacher.name}" outcome="tests?teacherId=#{teacher.id}"/></li>
+        </ui:repeat>
+    </ol>
+
+    <h:form>
+        <h:inputText value="#{teachers.teacherToCreate.name}" required="true" />
+        <h:commandButton value="Add new teacher" actionListener="#{teachers.createTeacher}" action="index?faces-redirect=true"/>
+    </h:form>
+<!--    <h:link outcome="myBatis/teachers" value="MyBatis implementation"/>-->
+</h:body>
+</html>

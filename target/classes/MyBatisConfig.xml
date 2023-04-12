@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="com.example.javeeetestnodependencies.mybatis.model.Teacher" alias="Teacher"/>
+        <typeAlias type="com.example.javeeetestnodependencies.mybatis.model.Test" alias="Test"/>
+        <typeAlias type="com.example.javeeetestnodependencies.mybatis.model.Student" alias="Student"/>
+        <typeAlias type="com.example.javeeetestnodependencies.mybatis.model.StudentTest" alias="StudentTest"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="MANAGED"/>
+            <dataSource type="JNDI">
+                <property name="data_source" value="TeachersDataSource"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mybatis/xml/TeacherMapper.xml"/>
+        <mapper resource="mybatis/xml/TestMapper.xml"/>
+        <mapper resource="mybatis/xml/StudentMapper.xml"/>
+        <mapper resource="mybatis/xml/StudentTestMapper.xml"/>
+    </mappers>
+</configuration>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="TeacherDB" targetRuntime="MyBatis3Simple">
+        <jdbcConnection driverClass="org.h2.Driver"
+                        connectionURL="jdbc:h2:~/h2database/TeacherDB;AUTO_SERVER=TRUE"
+                        userId="sa"
+                        password="sa">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.example.javeeetestnodependencies.mybatis.model" targetProject="src/main/java" />
+
+        <sqlMapGenerator targetPackage="mybatis.xml" targetProject="src/main/resources" />
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.javeeetestnodependencies.mybatis.dao" targetProject="src/main/java" />
+
+
+        <table schema="public" tableName="teacher" domainObjectName="Teacher">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+        <table schema="public" tableName="test" domainObjectName="Test">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+<!--            <ignoreColumn column="opt_lock_version" />-->
+        </table>
+        <table schema="public" tableName="student">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+
+    </context>
+</generatorConfiguration>

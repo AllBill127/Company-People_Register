@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h2>students for test "#{testsToStudents.test.name}":</h2>
+    <ol>
+        <ui:repeat value="#{testsToStudents.test.students}" var="student">
+            <li><h:link value="#{student.name}"/></li>
+        </ui:repeat>
+    </ol>
+    <!--    <h:outputText value="#{students.studentToCreate}"/>-->
+    <h:form>
+        <h:inputText value="#{testsToStudents.studentToCreate.name}" required="true" />
+        <h:commandButton value="Add new student"
+                         actionListener="#{testsToStudents.createStudent}"
+                         action="#{'students?faces-redirect=true&amp;testId='.concat(testsToStudents.test.id)}">
+        <f:param name="testId" value="#{testsToStudents.test.id}" />
+        </h:commandButton>
+    </h:form>
+</h:body>
+</html>
