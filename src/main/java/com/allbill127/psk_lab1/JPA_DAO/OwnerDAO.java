@@ -3,10 +3,12 @@ package com.allbill127.psk_lab1.JPA_DAO;
 import com.allbill127.psk_lab1.entities.Company;
 import com.allbill127.psk_lab1.entities.Person;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+@ApplicationScoped
 public class OwnerDAO {
     @Inject
     private EntityManager em;
