@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/core"
+>
+<h:head/>
+<h:body>
+    <header>
+        <h1>Companies register</h1>
+        <nav>
+            <h:link value="Back"
+                    outcome="companies.xhtml?face-redirect=true" /><br/>
+            <h:link value="JPA Home"
+                    outcome="jpaHome.xhtml?face-redirect=true" /><br/>
+            <h:link value="Companies in register"
+                    outcome="companies.xhtml?face-redirect=true" /><br/>
+            <h:link value="People in register"
+                    outcome="people.xhtml?face-redirect=true" /><br/>
+            <h:link value="Add people"
+                    outcome="addPerson.xhtml?face-redirect=true" /><br/>
+            <h:link value="Add company"
+                    outcome="addCompany.xhtml?face-redirect=true" /><br/>
+            <h:link value="Add Employee"
+                    outcome="addEmployee.xhtml?face-redirect=true" /><br/>
+            <h:link value="Add owner of a company"
+                    outcome="addOwner.xhtml?face-redirect=true" /><br/>
+            <h:link value="Persistence implementations"
+                    outcome="index.xhtml?face-redirect=true" /><br/>
+        </nav>
+        <hr/>
+    </header>
+
+    <main>
+        <h2>Company details:</h2>
+        <h:form>
+            <h:outputText value="Id: #{companyDetailsBean.company.id}" /><br/>
+            <h:outputText value="Name: #{companyDetailsBean.company.name}" /><br/>
+            <h:outputText value="Email: #{companyDetailsBean.company.email}" /><br/>
+            <h:outputText value="Capital: #{companyDetailsBean.company.capital}" /><br/>
+
+            <h4>Owners:</h4>
+            <ol>
+                <ui:repeat value="#{companyDetailsBean.company.owners}"
+                           var="owner">
+                    <li>
+                        <h:link value="#{owner.name}"
+                                outcome="personDetails?personId=#{owner.id}" />
+                    </li>
+                </ui:repeat>
+            </ol>
+
+            <h4>Employees:</h4>
+            <ol>
+                <ui:repeat value="#{companyDetailsBean.company.employees}"
+                           var="employee">
+                    <li>
+                        <h:link value="#{employee.person.name}"
+                                outcome="employeeDetails?employeeId=#{employee.id}" />
+                    </li>
+                </ui:repeat>
+            </ol>
+        </h:form>
+    </main>
+
+    <footer>
+        <hr/>
+        <p>Coded by AllBill127</p>
+    </footer>
+</h:body>
+</html>
