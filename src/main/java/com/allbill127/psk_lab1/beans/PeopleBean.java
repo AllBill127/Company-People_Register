@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Model
-public class PersonBean {
+public class PeopleBean {
     @Inject
     private PersonDAO personDAO;
 

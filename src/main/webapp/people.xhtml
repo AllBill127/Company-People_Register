@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+>
+<h:head/>
+<h:body>
+    <header>
+        <h1>Companies register</h1>
+        <nav>
+            <h:link value="JPA Home"
+                    outcome="jpaHome.xhtml?face-redirect=true" /><br/>
+            <h:link value="Companies in register"
+                    outcome="companies.xhtml?face-redirect=true" /><br/>
+            <h:link value="Add people"
+                    outcome="addPerson.xhtml?face-redirect=true" /><br/>
+            <h:link value="Add company"
+                    outcome="addCompany.xhtml?face-redirect=true" /><br/>
+            <h:link value="Add Employee"
+                    outcome="addEmployee.xhtml?face-redirect=true" /><br/>
+            <h:link value="Add owner of a company"
+                    outcome="addOwner.xhtml?face-redirect=true" /><br/>
+            <h:link value="Persistence implementations"
+                    outcome="index.xhtml?face-redirect=true" /><br/>
+        </nav>
+        <hr/>
+    </header>
+
+    <main>
+        <h2>People in register:</h2>
+        <ol>
+            <ui:repeat value="#{peopleBean.allPeople}"
+                       var="person">
+                <li>
+                    <h:link value="#{person.name}"
+                            outcome="personDetails?personId=#{person.id}" />
+                </li>
+            </ui:repeat>
+        </ol>
+
+        <h3>Add new person:</h3>
+        <h:form>
+            <h:inputText a:placeholder="soc_sec_nr"
+                         value="#{peopleBean.personToCreate.soc_sec_nr}"
+                         required="true" /><br/>
+            <h:inputText a:placeholder="name"
+                         value="#{peopleBean.personToCreate.name}"
+                         required="true" /><br/>
+            <h:inputText a:placeholder="email"
+                         value="#{peopleBean.personToCreate.email}"
+                         required="true" /><br/>
+            <h:commandButton value="Add new person"
+                             actionListener="#{peopleBean.createPerson()}"
+                             action="people?faces-redirect=true"/>
+        </h:form>
+    </main>
+
+    <footer>
+        <hr/>
+        <p>Coded by AllBill127</p>
+    </footer>
+</h:body>
+</html>
