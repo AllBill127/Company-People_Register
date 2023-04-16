@@ -6,19 +6,20 @@
 >
 <h:head/>
 <h:body>
-    <h2>people:</h2>
-    <ol>
-        <ui:repeat value="#{person.allPeople}" var="person">
-            <li><h:link value="#{person.name}" outcome="employeeModel?personId=#{person.id}"/></li>
-        </ui:repeat>
-    </ol>
+    <header>
+        <h1>Companies register</h1>
+        <nav>
+            <h:link value="JPA Home"
+                    outcome="jpaHome.xhtml?face-redirect=true" /><br/>
+            <h:link value="MyBatisHome"
+                    outcome="myBatisHome.xhtml?face-redirect=true" /><br/>
+        </nav>
+        <hr/>
+    </header>
 
-    <h:form>
-        <h:inputText value="#{personModel.personToCreate.soc_sec_nr}" required="true" placeholder="soc_sec_nr"/>
-        <h:inputText value="#{personModel.personToCreate.name}" required="true"  placeholder="name"/>
-        <h:inputText value="#{personModel.personToCreate.email}" required="true"  placeholder="email"/>
-        <h:commandButton value="Add new person" actionListener="#{personModel.createPerson}" action="index?faces-redirect=true"/>
-    </h:form>
-<!--    <h:link outcome="myBatis/teachers" value="MyBatis implementation"/>-->
+    <footer>
+        <hr/>
+        <p>Coded by AllBill127</p>
+    </footer>
 </h:body>
 </html>
