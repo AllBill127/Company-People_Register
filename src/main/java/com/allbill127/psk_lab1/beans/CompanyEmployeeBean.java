@@ -1,9 +1,9 @@
-package com.allbill127.psk_lab1.models;
+package com.allbill127.psk_lab1.beans;
 
 import com.allbill127.psk_lab1.entities.Company;
 import com.allbill127.psk_lab1.JPA_DAO.CompanyDAO;
-import com.allbill127.psk_lab1.entities.Person;
-import com.allbill127.psk_lab1.JPA_DAO.PersonDAO;
+import com.allbill127.psk_lab1.entities.Employee;
+import com.allbill127.psk_lab1.JPA_DAO.EmployeeDAO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,18 +15,18 @@ import javax.transaction.Transactional;
 import java.util.Map;
 
 @Model
-public class PersonCompanyModel {
-    @Inject
-    private PersonDAO personDAO;
-
+public class CompanyEmployeeBean {
     @Inject
     private CompanyDAO companyDAO;
+
+    @Inject
+    private EmployeeDAO employeeDAO;
 
     @Getter @Setter
     private Company company;
 
     @Getter @Setter
-    private Person personToCreate = new Person();
+    private Employee employeeToCreate = new Employee();
 
     @PostConstruct
     public void init(){
@@ -39,14 +39,9 @@ public class PersonCompanyModel {
         this.company = companyDAO.getById(companyId);
     }
 
-    //TODO
-    //Currently creates a new person each time. no check if it already exists (has same name and other data)
-    //Perhaps a better solution is to have a separate student creation page
-    //And show student selection inside company
     @Transactional
-    public void createPerson(){
-        personToCreate.addCompany(this.company);
-        personDAO.create(personToCreate);
+    public void createEmployee(){
+        employeeToCreate.setCompany(this.company);
+        employeeDAO.create(employeeToCreate);
     }
-
 }
