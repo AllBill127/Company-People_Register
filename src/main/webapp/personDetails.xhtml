@@ -26,45 +26,42 @@
     </header>
 
     <main>
-        <h2>Person details:</h2>
+    <h2>Person details:</h2>
+        <h:outputText value="Id: #{personDetailsBean.person.id}" /><br/>
+        <h:outputText value="Soc. sec. nr.: #{personDetailsBean.person.soc_sec_nr}" /><br/>
+        <h:outputText value="Name: #{personDetailsBean.person.name}" /><br/>
+        <h:outputText value="Email: #{personDetailsBean.person.email}" /><br/>
+
+        <h4>Employed at:</h4>
+        <ol>
+            <ui:repeat value="#{personDetailsBean.person.employed}"
+                       var="employee">
+                <li>
+                    <h:link value="#{employee.company.name}"
+                            outcome="employeeDetails?employeeId=#{employee.id}" />
+                </li>
+            </ui:repeat>
+        </ol>
+
+        <h4>Companies owned:</h4>
+        <ol>
+            <ui:repeat value="#{personDetailsBean.person.ownedCompanies}"
+                       var="company">
+                <li>
+                    <h:link value="#{company.name}"
+                            outcome="companyDetails?companyId=#{company.id}" />
+                </li>
+            </ui:repeat>
+        </ol>
+
         <h:form>
-            <h:outputText value="Id: #{personDetailsBean.person.id}" /><br/>
-            <h:outputText value="Soc. sec. nr.: #{personDetailsBean.person.soc_sec_nr}" /><br/>
-            <h:outputText value="Name: #{personDetailsBean.person.name}" /><br/>
-            <h:outputText value="Email: #{personDetailsBean.person.email}" /><br/>
-
-            <h4>Employed at:</h4>
-            <ol>
-                <ui:repeat value="#{personDetailsBean.person.employed}"
-                           var="employee">
-                    <li>
-                        <h:link value="#{employee.company.name}"
-                                outcome="employeeDetails?employeeId=#{employee.id}" />
-                    </li>
-                </ui:repeat>
-            </ol>
-
-            <h4>Companies owned:</h4>
-            <ol>
-                <ui:repeat value="#{personDetailsBean.person.ownedCompanies}"
-                           var="company">
-                    <li>
-                        <h:link value="#{company.name}"
-                                outcome="companyDetails?companyId=#{company.id}" />
-                    </li>
-                </ui:repeat>
-            </ol>
-
             <h:outputText value="Add new owned company:" /><br/>
             <h:inputText a:placeholder="company id"
-                         value="#{ownerBean.companyIdString}"
+                         value="#{personDetailsBean.companyIdString}"
                          required="true" /><br/>
             <h:commandButton value="Add"
-                             actionListener="#{ownerBean.setPersonIdString(param['personId'])}"
-                             action="#{ownerBean.addOwner()}">
-                <!--//TODO:
-                    // force reload page. currently it inserts data to DB and selects the data
-                    // for the page but the employee list does not update-->
+                             actionListener="#{personDetailsBean.addOwner()}"
+                             action="personDetails?face-redirect=true">
                 <f:param name="personId" value="#{param['personId']}" />
             </h:commandButton>
         </h:form>

@@ -27,4 +27,7 @@ public class PersonDAO {
     public void create(Person person){
         this.em.persist(person);
     }
+    public void update(Person person){
+        this.em.merge(person);
+    }
 }
