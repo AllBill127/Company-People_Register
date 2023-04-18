@@ -27,49 +27,58 @@
 
     <main>
         <h2>Company details:</h2>
+        <h:outputText value="Id: #{companyDetailsBean.company.id}" /><br/>
+        <h:outputText value="Name: #{companyDetailsBean.company.name}" /><br/>
+        <h:outputText value="Email: #{companyDetailsBean.company.email}" /><br/>
+        <h:outputText value="Capital: #{companyDetailsBean.company.capital}" /><br/>
+
+        <h4>Owners:</h4>
+        <ol>
+            <ui:repeat value="#{companyDetailsBean.company.owners}"
+                       var="owner">
+                <li>
+                    <h:link value="#{owner.name}"
+                            outcome="personDetails?personId=#{owner.id}" />
+                </li>
+            </ui:repeat>
+        </ol>
+
         <h:form>
-            <h:outputText value="Id: #{companyDetailsBean.company.id}" /><br/>
-            <h:outputText value="Name: #{companyDetailsBean.company.name}" /><br/>
-            <h:outputText value="Email: #{companyDetailsBean.company.email}" /><br/>
-            <h:outputText value="Capital: #{companyDetailsBean.company.capital}" /><br/>
-
-            <h4>Owners:</h4>
-            <ol>
-                <ui:repeat value="#{companyDetailsBean.company.owners}"
-                           var="owner">
-                    <li>
-                        <h:link value="#{owner.name}"
-                                outcome="personDetails?personId=#{owner.id}" />
-                    </li>
-                </ui:repeat>
-            </ol>
-
-            <h4>Employees:</h4>
-            <h:outputText value="Add new employee:" /><br/>
+            <h:outputText value="Add new owner:" /><br/>
             <h:inputText a:placeholder="person id"
-                         value="#{companyEmployeeBean.personIdString}"
-                         required="true" /><br/>
-            <h:inputText a:placeholder="salary"
-                         value="#{companyEmployeeBean.employee.salary}"
+                         value="#{companyDetailsBean.personIdString}"
                          required="true" /><br/>
             <h:commandButton value="Add"
-                             actionListener="#{companyEmployeeBean.setCompanyIdString(param['companyId'])}"
-                             action="#{companyEmployeeBean.createEmployee()}">
-                <!--//TODO:
-                    // force reload page. currently it inserts data to DB and selects the data
-                    // for the page but the employee list does not update-->
+                             actionListener="#{companyDetailsBean.addOwner()}"
+                             action="companyDetails.xhtml?face-redirect=true">
                 <f:param name="companyId" value="#{param['companyId']}" />
             </h:commandButton>
+        </h:form>
 
-            <ol>
-                <ui:repeat value="#{companyDetailsBean.company.employees}"
-                           var="employee">
-                    <li>
-                        <h:link value="#{employee.person.name}"
-                                outcome="employeeDetails?employeeId=#{employee.id}" />
-                    </li>
-                </ui:repeat>
-            </ol>
+        <h4>Employees:</h4>
+        <ol>
+            <ui:repeat value="#{companyDetailsBean.company.employees}"
+                       var="employee">
+                <li>
+                    <h:link value="#{employee.person.name}"
+                            outcome="employeeDetails?employeeId=#{employee.id}" />
+                </li>
+            </ui:repeat>
+        </ol>
+
+        <h:form>
+            <h:outputText value="Add new employee:" /><br/>
+            <h:inputText a:placeholder="person id"
+                         value="#{companyDetailsBean.personIdString}"
+                         required="true" /><br/>
+            <h:inputText a:placeholder="salary"
+                         value="#{companyDetailsBean.employee.salary}"
+                         required="true" /><br/>
+            <h:commandButton value="Add"
+                             actionListener="#{companyDetailsBean.addEmployee()}"
+                             action="companyDetails.xhtml?face-redirect=true">
+                <f:param name="companyId" value="#{param['companyId']}" />
+            </h:commandButton>
         </h:form>
     </main>
 

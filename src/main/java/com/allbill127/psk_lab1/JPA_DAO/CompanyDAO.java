@@ -27,4 +27,8 @@ public class CompanyDAO {
     public void create(Company company){
         this.em.persist(company);
     }
+
+    public void update(Company company){
+        this.em.merge(company);
+    }
 }
