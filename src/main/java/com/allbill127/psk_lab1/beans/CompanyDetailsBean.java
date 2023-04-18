@@ -23,7 +23,7 @@ import static java.lang.Long.parseLong;
 
 @Model
 public class CompanyDetailsBean {
-    private static final Logger _logger = Logger.getLogger(CompanyEmployeeBean.class.getName());
+    private static final Logger _logger = Logger.getLogger(CompanyDetailsBean.class.getName());
     @Inject
     private CompanyDAO companyDAO;
     @Inject
