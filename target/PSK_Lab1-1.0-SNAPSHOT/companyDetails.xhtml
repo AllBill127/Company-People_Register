@@ -11,7 +11,7 @@
     <header>
         <h1>Companies register</h1>
         <nav>
-            <h:link value="Back"
+            <h:link value="Back to company list"
                     outcome="companies.xhtml?face-redirect=true" /><br/>
             <h:link value="JPA Home"
                     outcome="jpaHome.xhtml?face-redirect=true" /><br/>
@@ -19,14 +19,6 @@
                     outcome="companies.xhtml?face-redirect=true" /><br/>
             <h:link value="People in register"
                     outcome="people.xhtml?face-redirect=true" /><br/>
-            <h:link value="Add people"
-                    outcome="addPerson.xhtml?face-redirect=true" /><br/>
-            <h:link value="Add company"
-                    outcome="addCompany.xhtml?face-redirect=true" /><br/>
-            <h:link value="Add Employee"
-                    outcome="addEmployee.xhtml?face-redirect=true" /><br/>
-            <h:link value="Add owner of a company"
-                    outcome="addOwner.xhtml?face-redirect=true" /><br/>
             <h:link value="Persistence implementations"
                     outcome="index.xhtml?face-redirect=true" /><br/>
         </nav>
@@ -35,45 +27,58 @@
 
     <main>
         <h2>Company details:</h2>
+        <h:outputText value="Id: #{companyDetailsBean.company.id}" /><br/>
+        <h:outputText value="Name: #{companyDetailsBean.company.name}" /><br/>
+        <h:outputText value="Email: #{companyDetailsBean.company.email}" /><br/>
+        <h:outputText value="Capital: #{companyDetailsBean.company.capital}" /><br/>
+
+        <h4>Owners:</h4>
+        <ol>
+            <ui:repeat value="#{companyDetailsBean.company.owners}"
+                       var="owner">
+                <li>
+                    <h:link value="#{owner.name}"
+                            outcome="personDetails?personId=#{owner.id}" />
+                </li>
+            </ui:repeat>
+        </ol>
+
         <h:form>
-            <h:outputText value="Id: #{companyDetailsBean.company.id}" /><br/>
-            <h:outputText value="Name: #{companyDetailsBean.company.name}" /><br/>
-            <h:outputText value="Email: #{companyDetailsBean.company.email}" /><br/>
-            <h:outputText value="Capital: #{companyDetailsBean.company.capital}" /><br/>
-
-            <h4>Owners:</h4>
-            <ol>
-                <ui:repeat value="#{companyDetailsBean.company.owners}"
-                           var="owner">
-                    <li>
-                        <h:link value="#{owner.name}"
-                                outcome="personDetails?personId=#{owner.id}" />
-                    </li>
-                </ui:repeat>
-            </ol>
-
-            <h4>Employees:</h4>
-            <h:outputText value="Add new employee:" /><br/>
+            <h:outputText value="Add new owner:" /><br/>
             <h:inputText a:placeholder="person id"
-                         value="#{companyEmployeeBean.personIdString}"
-                         required="true" /><br/>
-            <h:inputText a:placeholder="salary"
-                         value="#{companyEmployeeBean.employee.salary}"
+                         value="#{companyDetailsBean.personIdString}"
                          required="true" /><br/>
             <h:commandButton value="Add"
-                             actionListener="#{companyEmployeeBean.setCompanyIdString(param['companyId'])}"
-                             action="#{companyEmployeeBean.createEmployee()}"> <!--not reloading-->
+                             actionListener="#{companyDetailsBean.addOwner()}"
+                             action="companyDetails.xhtml?face-redirect=true">
                 <f:param name="companyId" value="#{param['companyId']}" />
             </h:commandButton>
-            <ol>
-                <ui:repeat value="#{companyDetailsBean.company.employees}"
-                           var="employee">
-                    <li>
-                        <h:link value="#{employee.person.name}"
-                                outcome="employeeDetails?employeeId=#{employee.id}" />
-                    </li>
-                </ui:repeat>
-            </ol>
+        </h:form>
+
+        <h4>Employees:</h4>
+        <ol>
+            <ui:repeat value="#{companyDetailsBean.company.employees}"
+                       var="employee">
+                <li>
+                    <h:link value="#{employee.person.name}"
+                            outcome="employeeDetails?employeeId=#{employee.id}" />
+                </li>
+            </ui:repeat>
+        </ol>
+
+        <h:form>
+            <h:outputText value="Add new employee:" /><br/>
+            <h:inputText a:placeholder="person id"
+                         value="#{companyDetailsBean.personIdString}"
+                         required="true" /><br/>
+            <h:inputText a:placeholder="salary"
+                         value="#{companyDetailsBean.employee.salary}"
+                         required="true" /><br/>
+            <h:commandButton value="Add"
+                             actionListener="#{companyDetailsBean.addEmployee()}"
+                             action="companyDetails.xhtml?face-redirect=true">
+                <f:param name="companyId" value="#{param['companyId']}" />
+            </h:commandButton>
         </h:form>
     </main>
 
