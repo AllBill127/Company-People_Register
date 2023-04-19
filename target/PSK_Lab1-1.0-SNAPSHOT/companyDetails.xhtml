@@ -6,22 +6,38 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
 >
-<h:head/>
+<h:head>
+    <f:metadata>
+        <f:event type="preRenderView"
+                 listener="#{redirectTrackerBean.incrementLinkCount(param['linkClicked'])}" />
+    </f:metadata>
+</h:head>
 <h:body>
     <header>
         <h1>Companies register</h1>
         <nav>
             <h:link value="Back to company list"
-                    outcome="companies.xhtml?face-redirect=true" /><br/>
+                    outcome="companies.xhtml?face-redirect=true">
+                <f:param name="linkClicked" value="true" />
+            </h:link> |
             <h:link value="JPA Home"
-                    outcome="jpaHome.xhtml?face-redirect=true" /><br/>
+                    outcome="jpaHome.xhtml?face-redirect=true">
+                <f:param name="linkClicked" value="true" />
+            </h:link> |
             <h:link value="Companies in register"
-                    outcome="companies.xhtml?face-redirect=true" /><br/>
+                    outcome="companies.xhtml?face-redirect=true">
+                <f:param name="linkClicked" value="true" />
+            </h:link> |
             <h:link value="People in register"
-                    outcome="people.xhtml?face-redirect=true" /><br/>
+                    outcome="people.xhtml?face-redirect=true">
+                <f:param name="linkClicked" value="true" />
+            </h:link> |
             <h:link value="Persistence implementations"
-                    outcome="index.xhtml?face-redirect=true" /><br/>
+                    outcome="index.xhtml?face-redirect=true">
+                <f:param name="linkClicked" value="true" />
+            </h:link><br/>
         </nav>
+        <h:outputText value="Links clicked: #{redirectTrackerBean.linkCount}" />
         <hr/>
     </header>
 
@@ -38,7 +54,9 @@
                        var="owner">
                 <li>
                     <h:link value="#{owner.name}"
-                            outcome="personDetails?personId=#{owner.id}" />
+                            outcome="personDetails?personId=#{owner.id}">
+                        <f:param name="linkClicked" value="true" />
+                    </h:link>
                 </li>
             </ui:repeat>
         </ol>
@@ -61,7 +79,9 @@
                        var="employee">
                 <li>
                     <h:link value="#{employee.person.name}"
-                            outcome="employeeDetails?employeeId=#{employee.id}" />
+                            outcome="employeeDetails?employeeId=#{employee.id}">
+                        <f:param name="linkClicked" value="true" />
+                    </h:link>
                 </li>
             </ui:repeat>
         </ol>
@@ -75,10 +95,10 @@
                          value="#{companyDetailsBean.employee.salary}"
                          required="true" /><br/>
             <h:commandButton value="Add"
-                             actionListener="#{companyDetailsBean.addEmployee()}"
-                             action="companyDetails.xhtml?face-redirect=true">
+                             action="#{companyDetailsBean.addEmployee()}">
                 <f:param name="companyId" value="#{param['companyId']}" />
             </h:commandButton>
+            <h:outputText value=" | error: #{param['error']}" rendered="#{not empty param['error']}" />
         </h:form>
     </main>
 
