@@ -1,4 +1,4 @@
-package com.allbill127.psk_lab1.models;
+package com.allbill127.psk_lab1.beans;
 
 import com.allbill127.psk_lab1.entities.Person;
 import com.allbill127.psk_lab1.JPA_DAO.PersonDAO;
@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Model
-public class PersonModel {
+public class PeopleBean {
     @Inject
     private PersonDAO personDAO;
 

@@ -22,7 +22,7 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private long id;
 
     @Column (name = "SALARY", nullable = false)
     private BigDecimal salary;
