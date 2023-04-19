@@ -1,12 +1,13 @@
-package com.allbill127.psk_lab1.beans;
+package com.allbill127.psk_lab1.jpa.beans;
 
-import com.allbill127.psk_lab1.JPA_DAO.CompanyDAO;
-import com.allbill127.psk_lab1.JPA_DAO.EmployeeDAO;
-import com.allbill127.psk_lab1.JPA_DAO.OwnerDAO;
-import com.allbill127.psk_lab1.JPA_DAO.PersonDAO;
-import com.allbill127.psk_lab1.entities.Company;
-import com.allbill127.psk_lab1.entities.Employee;
-import com.allbill127.psk_lab1.entities.Person;
+import com.allbill127.psk_lab1.jpa.dao.CompanyDAO;
+import com.allbill127.psk_lab1.jpa.dao.EmployeeDAO;
+import com.allbill127.psk_lab1.jpa.dao.OwnerDAO;
+import com.allbill127.psk_lab1.jpa.dao.PersonDAO;
+import com.allbill127.psk_lab1.jpa.entities.Company;
+import com.allbill127.psk_lab1.jpa.entities.Employee;
+import com.allbill127.psk_lab1.jpa.entities.Person;
+import com.allbill127.psk_lab1.usecases.EmploymentValidatorBean;
 import lombok.Getter;
 import lombok.Setter;
 

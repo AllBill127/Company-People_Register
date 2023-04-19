@@ -1,7 +1,7 @@
-package com.allbill127.psk_lab1.beans;
+package com.allbill127.psk_lab1.jpa.beans;
 
-import com.allbill127.psk_lab1.JPA_DAO.EmployeeDAO;
-import com.allbill127.psk_lab1.entities.Employee;
+import com.allbill127.psk_lab1.jpa.dao.EmployeeDAO;
+import com.allbill127.psk_lab1.jpa.entities.Employee;
 import lombok.Getter;
 import lombok.Setter;
 

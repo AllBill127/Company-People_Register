@@ -1,6 +1,6 @@
-package com.allbill127.psk_lab1.JPA_DAO;
+package com.allbill127.psk_lab1.jpa.dao;
 
-import com.allbill127.psk_lab1.entities.Employee;
+import com.allbill127.psk_lab1.jpa.entities.Employee;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

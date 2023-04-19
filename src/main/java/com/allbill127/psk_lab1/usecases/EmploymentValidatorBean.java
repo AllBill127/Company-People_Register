@@ -1,6 +1,6 @@
-package com.allbill127.psk_lab1.beans;
+package com.allbill127.psk_lab1.usecases;
 
-import com.allbill127.psk_lab1.entities.Company;
+import com.allbill127.psk_lab1.jpa.entities.Company;
 import org.jetbrains.annotations.NotNull;
 
 import javax.enterprise.context.RequestScoped;

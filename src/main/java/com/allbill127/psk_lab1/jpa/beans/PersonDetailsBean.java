@@ -1,10 +1,9 @@
-package com.allbill127.psk_lab1.beans;
+package com.allbill127.psk_lab1.jpa.beans;
 
-import com.allbill127.psk_lab1.JPA_DAO.CompanyDAO;
-import com.allbill127.psk_lab1.JPA_DAO.OwnerDAO;
-import com.allbill127.psk_lab1.entities.Company;
-import com.allbill127.psk_lab1.entities.Person;
-import com.allbill127.psk_lab1.JPA_DAO.PersonDAO;
+import com.allbill127.psk_lab1.jpa.dao.CompanyDAO;
+import com.allbill127.psk_lab1.jpa.entities.Company;
+import com.allbill127.psk_lab1.jpa.entities.Person;
+import com.allbill127.psk_lab1.jpa.dao.PersonDAO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +12,6 @@ import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

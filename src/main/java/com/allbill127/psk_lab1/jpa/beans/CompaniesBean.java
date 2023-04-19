@@ -1,8 +1,8 @@
-package com.allbill127.psk_lab1.beans;
+package com.allbill127.psk_lab1.jpa.beans;
 
-import com.allbill127.psk_lab1.JPA_DAO.CompanyDAO;
-import com.allbill127.psk_lab1.JPA_DAO.OwnerDAO;
-import com.allbill127.psk_lab1.entities.Company;
+import com.allbill127.psk_lab1.jpa.dao.CompanyDAO;
+import com.allbill127.psk_lab1.jpa.dao.OwnerDAO;
+import com.allbill127.psk_lab1.jpa.entities.Company;
 import lombok.Getter;
 import lombok.Setter;
 

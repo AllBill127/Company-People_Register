@@ -1,4 +1,4 @@
-package com.allbill127.psk_lab1.entities;
+package com.allbill127.psk_lab1.jpa.entities;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

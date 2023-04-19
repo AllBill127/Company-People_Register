@@ -1,7 +1,7 @@
-package com.allbill127.psk_lab1.JPA_DAO;
+package com.allbill127.psk_lab1.jpa.dao;
 
-import com.allbill127.psk_lab1.entities.Company;
-import com.allbill127.psk_lab1.entities.Person;
+import com.allbill127.psk_lab1.jpa.entities.Company;
+import com.allbill127.psk_lab1.jpa.entities.Person;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

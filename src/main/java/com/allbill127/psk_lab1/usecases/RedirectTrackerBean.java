@@ -1,4 +1,4 @@
-package com.allbill127.psk_lab1.beans;
+package com.allbill127.psk_lab1.usecases;
 
 import lombok.Getter;
 import lombok.Setter;

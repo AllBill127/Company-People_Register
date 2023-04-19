@@ -1,4 +1,4 @@
-package com.allbill127.psk_lab1.JPA_DAO;
+package com.allbill127.psk_lab1.jpa.dao;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;

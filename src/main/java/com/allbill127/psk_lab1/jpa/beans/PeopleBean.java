@@ -1,7 +1,7 @@
-package com.allbill127.psk_lab1.beans;
+package com.allbill127.psk_lab1.jpa.beans;
 
-import com.allbill127.psk_lab1.entities.Person;
-import com.allbill127.psk_lab1.JPA_DAO.PersonDAO;
+import com.allbill127.psk_lab1.jpa.entities.Person;
+import com.allbill127.psk_lab1.jpa.dao.PersonDAO;
 import lombok.Getter;
 import lombok.Setter;
 
