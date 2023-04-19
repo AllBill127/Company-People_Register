@@ -4,19 +4,32 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
 >
-<h:head/>
+<h:head>
+    <f:metadata>
+        <f:event type="preRenderView"
+                 listener="#{redirectTrackerBean.incrementLinkCount(param['linkClicked'])}" />
+    </f:metadata>
+</h:head>
 <h:body>
     <header>
         <h1>Companies register</h1>
         <nav>
             <h:link value="JPA Home"
-                    outcome="jpaHome.xhtml?face-redirect=true" /><br/>
+                    outcome="jpaHome.xhtml?face-redirect=true">
+                <f:param name="linkClicked" value="true" />
+            </h:link> |
             <h:link value="People in register"
-                    outcome="people.xhtml?face-redirect=true" /><br/>
+                    outcome="people.xhtml?face-redirect=true">
+                <f:param name="linkClicked" value="true" />
+            </h:link> |
             <h:link value="Persistence implementations"
-                    outcome="index.xhtml?face-redirect=true" /><br/>
+                    outcome="index.xhtml?face-redirect=true">
+                <f:param name="linkClicked" value="true" />
+            </h:link><br/>
         </nav>
+        <h:outputText value="Links clicked: #{redirectTrackerBean.linkCount}" />
         <hr/>
     </header>
 
@@ -27,7 +40,9 @@
                        var="company">
                 <li>
                     <h:link value="#{company.name}"
-                            outcome="companyDetails?companyId=#{company.id}" />
+                            outcome="companyDetails?companyId=#{company.id}">
+                        <f:param name="linkClicked" value="true" />
+                    </h:link>
                 </li>
             </ui:repeat>
         </ol>
