@@ -75,10 +75,10 @@
                          value="#{companyDetailsBean.employee.salary}"
                          required="true" /><br/>
             <h:commandButton value="Add"
-                             actionListener="#{companyDetailsBean.addEmployee()}"
-                             action="companyDetails.xhtml?face-redirect=true">
+                             action="#{companyDetailsBean.addEmployee()}">
                 <f:param name="companyId" value="#{param['companyId']}" />
             </h:commandButton>
+            <h:outputText value=" | error: #{param['error']}" rendered="#{not empty param['error']}" />
         </h:form>
     </main>
 

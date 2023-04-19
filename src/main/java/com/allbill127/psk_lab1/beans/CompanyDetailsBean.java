@@ -15,7 +15,7 @@ import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import java.util.List;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,6 +24,8 @@ import static java.lang.Long.parseLong;
 @Model
 public class CompanyDetailsBean {
     private static final Logger _logger = Logger.getLogger(CompanyDetailsBean.class.getName());
+    @Inject
+    private EmploymentValidatorBean employmentValidator;
     @Inject
     private CompanyDAO companyDAO;
     @Inject
@@ -54,7 +56,7 @@ public class CompanyDetailsBean {
     }
 
     @Transactional
-    public void addEmployee() {
+    public String addEmployee() throws IOException {
         Object[] logParams = {this.getClass().getName(),
                 company.getId(),
                 personIdString};
@@ -64,7 +66,19 @@ public class CompanyDetailsBean {
 
         if(personIdString == "" || personIdString == null){
             _logger.log(Level.WARNING, "{0} addEmployee() personIdString = null/empty", this.getClass().getName());
-            return;
+            FacesContext
+                    .getCurrentInstance()
+                    .getExternalContext()
+                    .redirect("companyDetails.xhtml?companyId="+company.getId()+"&error=missing-personId");
+            return null;
+        }
+
+        if(!employmentValidator.canEmploy(this.company, this.employee.getSalary())){
+            FacesContext
+                    .getCurrentInstance()
+                    .getExternalContext()
+                    .redirect("companyDetails.xhtml?companyId="+company.getId()+"&error=not-enough-capital");
+            return null;
         }
 
         long personId = parseLong(personIdString);
@@ -76,6 +90,10 @@ public class CompanyDetailsBean {
         // update currently loaded company
         this.company.getEmployees().add(employee);
         this.employeeDAO.create(employee);
+
+        personIdString = null;
+
+        return "companyDetails.xhtml?face-redirect=true";
     }
 
     @Transactional
