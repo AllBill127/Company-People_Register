@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="CompaniesDB" targetRuntime="MyBatis3Simple">
+        <jdbcConnection driverClass="org.h2.Driver"
+                        connectionURL="jdbc:h2:~/h2database/CompaniesDB;AUTO_SERVER=TRUE"
+                        userId="sa"
+                        password="sa">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.allbill127.psk_lab1.mybatis.entities" targetProject="MAVEN" />
+        <sqlMapGenerator targetPackage="com.allbill127.psk_lab1.mybatisMapperXMLs" targetProject="MAVEN" />
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.allbill127.psk_lab1.mybatis.dao" targetProject="MAVEN" />
+
+        <table schema="public" tableName="company">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+        <table schema="public" tableName="employee">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+        <table schema="public" tableName="person">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+        <table schema="public" tableName="owner"></table>
+    </context>
+</generatorConfiguration>
