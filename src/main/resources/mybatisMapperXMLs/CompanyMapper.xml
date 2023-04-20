@@ -11,6 +11,14 @@
     <result column="CAPITAL" jdbcType="DECIMAL" property="capital" />
     <result column="EMAIL" jdbcType="VARCHAR" property="email" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <!--  Manually added ManyToMany relation  -->
+    <collection property="owners" javaType="ArrayList"
+                ofType="Person" column="id"
+                select="selectCompanyOwners" />
+    <!--  Manually added OneToMany relation  -->
+    <collection property="employees" javaType="ArrayList"
+                ofType="Person" column="id"
+                select="selectCompanyEmployees" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
@@ -62,5 +70,18 @@
     -->
     select ID, CAPITAL, EMAIL, NAME
     from PUBLIC.COMPANY
+  </select>
+  <!--  Manually added ManyToMany relation SELECT statement  -->
+  <select id="selectCompanyOwners" resultType="Person">
+    SELECT *
+    FROM PUBLIC.PERSON p
+           JOIN PUBLIC.OWNER o ON p.ID = o.PERSON_ID
+    WHERE o.COMPANY_ID = #{id, jdbcType=BIGINT}
+  </select>
+  <!--  Manually added ManyToMany relation SELECT statement  -->
+  <select id="selectCompanyEmployees" resultType="Person">
+    SELECT *
+    FROM PUBLIC.EMPLOYEE e
+    WHERE e.COMPANY_ID = #{id, jdbcType=BIGINT}
   </select>
 </mapper>

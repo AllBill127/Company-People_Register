@@ -44,4 +44,8 @@ public class Person {
      * @mbg.generated Thu Apr 20 20:34:32 EEST 2023
      */
     private String socSecNr;
+
+    //  Manually added
+    private List<Employee> employed = new ArrayList<>();
+    private List<Company> ownedCompanies = new ArrayList<>();
 }

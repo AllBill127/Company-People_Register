@@ -11,6 +11,14 @@
     <result column="SALARY" jdbcType="DECIMAL" property="salary" />
     <result column="COMPANY_ID" jdbcType="BIGINT" property="companyId" />
     <result column="PERSON_ID" jdbcType="BIGINT" property="personId" />
+    <!--  Manually added ManyToOne relation  -->
+    <association property="person"
+                 columnPrefix="person_"
+                 resultMap="com.allbill127.psk_lab1.mybatis.dao.PersonMapper.BaseResultMap" />
+    <!--  Manually added ManyToOne relation  -->
+    <association property="company"
+                 columnPrefix="company_"
+                 resultMap="com.allbill127.psk_lab1.mybatis.dao.CompanyMapper.BaseResultMap" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--

@@ -45,4 +45,8 @@ public class Company {
      * @mbg.generated Thu Apr 20 20:34:32 EEST 2023
      */
     private String name;
+
+    //  Manually added
+    private List<Person> owners = new ArrayList<>();
+    private List<Person> employees = new ArrayList<>();
 }
